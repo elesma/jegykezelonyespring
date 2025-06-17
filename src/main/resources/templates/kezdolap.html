@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html  lang="hu" dir="ltr">
+<head>
+	<meta charset="UTF-8">
+	<title>Jegykezelő</title>
+	<link rel="stylesheet" href="styles/bootstrap.min.css" />
+	<link rel="stylesheet" href="styles/farsi-fonts.css">
+	<link rel="stylesheet" href="styles/mcustom.css" />
+	<link rel="stylesheet" href="styles/slick.css" />
+	<link rel="stylesheet" href="styles/slick-theme.css" />
+</head>
+<body>
+	<header class="col-md-10 col-md-offset-1">
+		<h1 style="color: #ffffff; text-align: right;">Nyíregyházi Egyetem Prog.környezetek Beadandó</h1>
+		<h3 style="color: #ffffff; text-align: right;">Éles Máté</h3>
+		<img id="ticket-img" src="images/Ticket.gif" />
+	</header>
+	<nav class="navbar navbar-default col-md-10 col-md-offset-1">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="kezdolap"><span class="glyphicon glyphicon-home" style="margin-left: 10px;"></span>Kezdőlap</a>
+			<a class="navbar-brand" href="elozmenyek"><span class="glyphicon glyphicon-repeat" style="margin-left: 10px;"></span>Előzmények</a>
+			<a class="navbar-brand" href="reg"><span class="glyphicon glyphicon-plus" style="margin-left: 10px;"></span>Rendezvény regisztrálás</a>
+		</div>
+
+	</nav>
+	<aside id="sidebar-1" class="col-md-2 col-md-offset-1">
+		
+	</aside>
+	<section class="col-md-6 main">
+
+		<hr>
+		<h3 style="color: black; text-align: center;">Aktuális rendezvények táblázatba foglalva</h3>
+		<div id="main">
+			
+
+			<table class="tg" style="width: 100%;" id="adatTabla"><thead>
+			  <tr>
+			    <th class="tg-39o3">ID</th>
+			    <th class="tg-39o3">Esemény Megnevezése</th>
+			    <th class="tg-39o3">Időpont</th>
+			    <th class="tg-attk"><span style="font-weight:bold">Részletek</span></th>
+			  </tr></thead>
+			<tbody>
+
+			</tbody>
+			</table>
+		</div>
+	</section>
+
+
+	<aside id="sidebar-2" class="col-md-2">
+		
+	</aside>
+	 <script>
+    const apiUrl = "http://127.0.0.1:8080/api/lista";
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Hiba történt a lekérés során");
+        }
+        return response.json();
+      })
+      .then(adatok => {
+        const tablaBody = document.querySelector("#adatTabla tbody");
+        tablaBody.innerHTML = "";
+        adatok.forEach(adat => {
+          const sor = document.createElement("tr");
+
+          sor.innerHTML = `
+            <td class="tg-c6of">${adat.id}</td>
+            <td class="tg-c6of">${adat.cim}</td>
+            <td class="tg-c6of">${adat.datum || "N/A"}</td>
+            <td class="tg-c6of"><a href=rendezvenyIndex?id=${adat.id}>KATT</a> <a href="#" onclick="torles(${adat.id})">Törlés</a></td>
+          `;
+
+          tablaBody.appendChild(sor);
+        });
+      })
+      .catch(error => {
+        console.error("Hiba:", error);
+        document.querySelector("#adatTabla").insertAdjacentHTML("afterend", `<p style="color: red;">Hiba történt az adatok betöltésekor.</p>`);
+      });
+	  
+	function torles(id) {
+    fetch('http://localhost:8080/torol/' + id, {
+        method: 'POST'
+    })
+    .then(response => response.text())
+    .then(text => {
+        location.reload()
+    });
+}
+  </script>
+	<script type="text/javascript"  src="scripts/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/slick.min.js"></script>
+</body>
+</html>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-attk{background-color:#efefef;border-color:inherit;color:#000000;text-align:left;vertical-align:top}
+.tg .tg-39o3{background-color:#efefef;border-color:#000000;color:#000000;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-c6of{background-color:#ffffff;border-color:inherit;text-align:left;vertical-align:top}
+</style>

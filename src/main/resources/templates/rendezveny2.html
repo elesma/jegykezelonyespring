@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hu" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>a</title>
+  <link rel="stylesheet" href="styles/bootstrap.min.css" />
+  <link rel="stylesheet" href="styles/bootstrap-rtl.min.css" />
+  <link rel="stylesheet" href="styles/farsi-fonts.css">
+  <link rel="stylesheet" href="styles/pcustom.css" />
+</head>
+<body>
+<div class="container-fluid">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <h2 style="width: 100%; text-align: center; margin: 10px" id="cim"></h2>
+
+      <div class="row">
+        <div class="col-lg-12" style="height: 50px">
+          <h4 style="margin-top: 0"></h4>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div class="col-md-4 text-center center-block">
+          <img src="" alt="kep" id="kep" class="img img-responsive center-block img-rounded" style="width: 200px; height: 250px" />
+        </div>
+
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-lg-12" style="text-align: center;" id="info"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+              <a href="buy-ticket.html" class="btn btn-success btn-lg btn-block">Jegyvásárlás</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+
+              <form role="form" method="GET">
+                <div style="margin: 10px" class="row lead center-block">
+                  <h4>
+                    <span style="margin: 20px">Rendezvény értékelése</span>
+                    <div id="stars" class="starrr"></div>
+                  </h4>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/pcustom.js"></script>
+<script type="text/javascript" src="scripts/star-rating.js"></script>
+<script type="text/javascript">
+  const urlParams = new URLSearchParams(window.location.search);
+  const asdErtek = urlParams.get("id");
+
+  if (asdErtek) {
+    const apiUrl = `http://127.0.0.1:8080/api/getrendezvenybyid/${encodeURIComponent(asdErtek)}`;
+
+    fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+              console.log("Lekért adat:", data);
+              $("#cim").html(data.cim);
+              $("#info").html(`Belépőjegy ára: ${data.ar} Ft<br>Kezdő dátum: ${data.datum}<br>Értékelés: ${data.ertekeles}`);
+              $("#kep").attr("src", data.link);
+            })
+            .catch(err => console.error("Hiba:", err));
+  } else {
+    console.warn("nincs parameter");
+  }
+</script>
+</body>
+</html>

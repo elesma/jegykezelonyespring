@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html  lang="hu" dir="ltr">
+<head>
+	<meta charset="UTF-8">
+	<title>Jegykezelő</title>
+	<link rel="stylesheet" href="styles/bootstrap.min.css" />
+	<link rel="stylesheet" href="styles/farsi-fonts.css">
+	<link rel="stylesheet" href="styles/mcustom.css" />
+	<link rel="stylesheet" href="styles/slick.css" />
+	<link rel="stylesheet" href="styles/slick-theme.css" />
+</head>
+<body>
+	<header class="col-md-10 col-md-offset-1">
+		<h1 style="color: #ffffff; text-align: right;">Nyíregyházi Egyetem Prog.környezetek Beadandó</h1>
+		<h3 style="color: #ffffff; text-align: right;">Éles Máté</h3>
+		<img id="ticket-img" src="images/Ticket.gif" />
+	</header>
+	<nav class="navbar navbar-default col-md-10 col-md-offset-1">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="kezdolap"><span class="glyphicon glyphicon-home" style="margin-left: 10px;"></span>Kezdőlap</a>
+			<a class="navbar-brand" href="elozmenyek"><span class="glyphicon glyphicon-repeat" style="margin-left: 10px;"></span>Előzmények</a>
+			<a class="navbar-brand" href="reg"><span class="glyphicon glyphicon-plus" style="margin-left: 10px;"></span>Rendezvény regisztrálás</a>
+		</div>
+
+	</nav>
+	<aside id="sidebar-1" class="col-md-2 col-md-offset-1">
+		
+	</aside>
+	<section class="col-md-6 main">
+
+		<hr>
+		<h3 style="color: black; text-align: center;">Rendezvény adatai</h3>
+		<div id="main">
+			<iframe id="ifrm" style="width: 100%; height: 700px"></iframe>
+
+			
+		</div>
+	</section>
+
+
+	<aside id="sidebar-2" class="col-md-2">
+		
+	</aside>
+
+	<script type="text/javascript"  src="scripts/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/slick.min.js"></script>
+	<script type="text/javascript">
+		const urlParams = new URLSearchParams(window.location.search);
+    const asdErtek = urlParams.get("id");
+		$('#ifrm').attr('src', "rendezvenyIndex2?id="+asdErtek)
+
+	</script>
+</body>
+</html>

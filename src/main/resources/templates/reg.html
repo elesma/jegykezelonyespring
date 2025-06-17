@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html  lang="hu" dir="ltr">
+<head>
+	<meta charset="UTF-8">
+	<title>Jegykezelő</title>
+	<link rel="stylesheet" href="styles/bootstrap.min.css" />
+	<link rel="stylesheet" href="styles/farsi-fonts.css">
+	<link rel="stylesheet" href="styles/mcustom.css" />
+	<link rel="stylesheet" href="styles/slick.css" />
+	<link rel="stylesheet" href="styles/slick-theme.css" />
+</head>
+<body>
+	<header class="col-md-10 col-md-offset-1">
+		<h1 style="color: #ffffff; text-align: right;">Nyíregyházi Egyetem Prog.környezetek Beadandó</h1>
+		<h3 style="color: #ffffff; text-align: right;">Éles Máté</h3>
+		<img id="ticket-img" src="images/Ticket.gif" />
+	</header>
+	<nav class="navbar navbar-default col-md-10 col-md-offset-1">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="kezdolap"><span class="glyphicon glyphicon-home" style="margin-left: 10px;"></span>Kezdőlap</a>
+			<a class="navbar-brand" href="elozmenyek"><span class="glyphicon glyphicon-repeat" style="margin-left: 10px;"></span>Előzmények</a>
+			<a class="navbar-brand" href="reg"><span class="glyphicon glyphicon-plus" style="margin-left: 10px;"></span>Rendezvény regisztrálás</a>
+		</div>
+
+	</nav>
+	<aside id="sidebar-1" class="col-md-2 col-md-offset-1">
+		
+	</aside>
+	<section class="col-md-6 main">
+
+		<hr>
+		<h3 style="color: black; text-align: center;">Új rendezvény regisztrálása a rendszerbe</h3>
+		<div id="main">
+			
+
+			<form class="form-horizontal" style="width: 100%; color: white;" action="http://127.0.0.1:8080/uj" method="POST">
+				<fieldset>
+
+				<legend style="color: white;">Rendezvény hozzáadása</legend>
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">Megnevezés</label>  
+				  <div class="col-md-4">
+				  <input id="textinput" name="cim" type="text" placeholder="megnevezés" class="form-control input-md" required="">
+				  <span class="help-block">írd be a rendezvény nevét</span>  
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">Ár</label>  
+				  <div class="col-md-4">
+				  <input id="textinput" name="ar" type="text" placeholder="ár" class="form-control input-md" required="">
+				  <span class="help-block">írd be a belépő árát</span>  
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">Dátum</label>  
+				  <div class="col-md-4">
+				  <input id="textinput" name="datum" type="date" placeholder="dátum" class="form-control input-md" required="">
+				  <span class="help-block">Add meg a rendezvény dátumát</span>  
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="textinput">Borítókép link</label>  
+				  <div class="col-md-4">
+				  <input id="textinput" name="link" type="text" placeholder="link" class="form-control input-md" required="">
+				  <span class="help-block">Add meg a borítókép linket</span>  
+				  </div>
+				</div>
+
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="mentes">Mentés</label>
+				  <div class="col-md-4">
+				    <button id="mentes" name="mentes" class="btn btn-primary">Mentés</button>
+				  </div>
+				</div>
+
+				</fieldset>
+			</form>
+
+
+		</div>
+	</section>
+
+
+	<aside id="sidebar-2" class="col-md-2">
+		
+	</aside>
+	<script type="text/javascript"  src="scripts/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/slick.min.js"></script>
+</body>
+</html>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-attk{background-color:#efefef;border-color:inherit;color:#000000;text-align:left;vertical-align:top}
+.tg .tg-39o3{background-color:#efefef;border-color:#000000;color:#000000;font-weight:bold;text-align:center;vertical-align:top}
+.tg .tg-c6of{background-color:#ffffff;border-color:inherit;text-align:left;vertical-align:top}
+</style>
